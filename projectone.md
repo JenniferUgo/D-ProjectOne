@@ -66,7 +66,7 @@ then go to the security group and select “a security group” review and launc
 
 ### Using ‘apt’ again to install MySQL server:
 
-> `$ sudo apt install mysql-server
+> `$ sudo apt install mysql-server`
 
 ![installing sql server](./images/install-sql-server.png)
 
@@ -157,15 +157,45 @@ then go to the security group and select “a security group” review and launc
 ### Then, finally, reload Apache so these changes take effect, using this command:
 >`sudo systemctl reload apache2`
 
-![enabling new vierual host](./images/enabling-new-virtual-host.png)
+![enabling new virtual host](./images/enabling-new-virtual-host.png)
 
 ### Next is to Create an index.html file in that location. Use this command:
 
 ### Test that the virtual host works as expected, by pasting this on the browser:
 >`http://<Public-IP-Address>:80`
 
+![test virtual host with Instance public IP address](./images/test-virtual-host.png)
+
 ---
 ---
 ## STEP 5 - ENABLE PHP ON THE WEBSITE
+
+### Edit the following file to enable PHP on the website
+>`sudo vim /etc/apache2/mods-enabled/dir.conf`
+
+![edit file to give PHP priority](./images/edit-file.png)
+
+### Exit the edit mode by clicking the esc button then type 
+`:wq` and press Enter.
+
+### Reload Apache for the changes to take effect, using this ccommand:
+>`sudo systemctl reload apache2`
+
+### Finally, create a PHP script to test that PHP is correctly installed and configured on the server.
+
+### Create a new file named index.php inside your custom web root folder:
+>`vim /var/www/projectlamp/index.php`
+### And add this PHP script in it:
+>`<?php
+phpinfo();`
+
+![add a php script](./images/add-new-php-script.png)
+
+### Save and reload Apache then go to browser and reload the 'Public IP Address' page:
+![reload page](./images/new-php-page.png) 
+
+### Then remove the index.php file created in projectlamp using this command:
+>`sudo rm /var/www/projectlamp/index.php`
+
 
 
